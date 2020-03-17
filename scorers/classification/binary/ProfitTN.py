@@ -17,8 +17,8 @@ class CostBinary(CustomScorer):
 
     # The cost of false positives and negatives will vary by data set, we use the rules from the below as an example
     # https://www.kaggle.com/uciml/aps-failure-at-scania-trucks-data-set
-    _tp_cost = 80
-    _tn_cost = 20
+    _tp_cost = 25
+    _tn_cost = 75
 
     def score(self,
               actual: np.array,
