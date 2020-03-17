@@ -12,7 +12,7 @@ class CostBinary(CustomScorer):
     _binary = True
     _maximize = True
     _perfect_score = 1000
-    _display_name = "Cost"
+    _display_name = "ProfitTN"
     _threshold = 0.5  # Example only, should be adjusted based on domain knowledge and other experiments
 
     # The cost of false positives and negatives will vary by data set, we use the rules from the below as an example
