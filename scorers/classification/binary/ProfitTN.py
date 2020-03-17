@@ -11,8 +11,8 @@ class CostBinary(CustomScorer):
     _description = "Calculates cost per row in binary classification: `(fp_cost*FP + fn_cost*FN) / N`"
     _binary = True
     _maximize = True
-    _perfect_score = 1000
-    _display_name = "ProfitTN"
+    _perfect_score = 50
+    _display_name = "ProfitTP"
     _threshold = 0.5  # Example only, should be adjusted based on domain knowledge and other experiments
 
     # The cost of false positives and negatives will vary by data set, we use the rules from the below as an example
@@ -38,4 +38,4 @@ class CostBinary(CustomScorer):
         tn, fp, fn, tp = cm.ravel()
 
         # calculate`$1*FP + $2*FN`
-        return ((tp * self.__class__._tp_cost) + (tn * self.__class__._tn_cost)) / (tn+fp+fn+tp)  # divide by total weighted count to make loss invariant to data size
+        return ((tp * self.__class__._tp_cost) + (tn * self.__class__._tn_cost)) / (tp+tn)  # divide by total weighted count to make loss invariant to data size
