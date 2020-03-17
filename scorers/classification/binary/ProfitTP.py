@@ -17,8 +17,8 @@ class CostBinary(CustomScorer):
 
     # The cost of false positives and negatives will vary by data set, we use the rules from the below as an example
     # https://www.kaggle.com/uciml/aps-failure-at-scania-trucks-data-set
-    _fp_cost = 20
-    _fn_cost = 80
+    _tp_cost = 20
+    _tn_cost = 80
 
     def score(self,
               actual: np.array,
@@ -38,4 +38,4 @@ class CostBinary(CustomScorer):
         tn, fp, fn, tp = cm.ravel()
 
         # calculate`$1*FP + $2*FN`
-        return ((fp * self.__class__._fp_cost) + (fn * self.__class__._fn_cost)) / (tn+fp+fn+tp)  # divide by total weighted count to make loss invariant to data size
+        return ((tp * self.__class__._tp_cost) + (tn * self.__class__._tn_cost)) / (tn+fp+fn+tp)  # divide by total weighted count to make loss invariant to data size
