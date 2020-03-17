@@ -10,15 +10,15 @@ from sklearn.metrics import confusion_matrix
 class CostBinary(CustomScorer):
     _description = "Calculates cost per row in binary classification: `(fp_cost*FP + fn_cost*FN) / N`"
     _binary = True
-    _maximize = False
-    _perfect_score = 0
+    _maximize = True
+    _perfect_score = 1000
     _display_name = "Cost"
     _threshold = 0.5  # Example only, should be adjusted based on domain knowledge and other experiments
 
     # The cost of false positives and negatives will vary by data set, we use the rules from the below as an example
     # https://www.kaggle.com/uciml/aps-failure-at-scania-trucks-data-set
-    _fp_cost = 10
-    _fn_cost = 500
+    _fp_cost = 20
+    _fn_cost = 80
 
     def score(self,
               actual: np.array,
